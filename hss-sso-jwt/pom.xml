@@ -34,6 +34,7 @@
         <thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
         <thymeleaf-layout-dialect.version>2.1.2</thymeleaf-layout-dialect.version>
         <bootstrap.version>4.1.3</bootstrap.version>
+        <jquery.version>3.3.1</jquery.version>
     </properties>
 
     <!--依赖管理-->
@@ -44,6 +45,13 @@
                 <groupId>org.webjars</groupId>
                 <artifactId>bootstrap</artifactId>
                 <version>${bootstrap.version}</version>
+            </dependency>
+
+            <!-- 引入jquery-->
+            <dependency>
+                <groupId>org.webjars</groupId>
+                <artifactId>jquery</artifactId>
+                <version>${jquery.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
