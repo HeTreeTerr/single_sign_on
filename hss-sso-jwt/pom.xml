@@ -35,6 +35,8 @@
         <thymeleaf-layout-dialect.version>2.1.2</thymeleaf-layout-dialect.version>
         <bootstrap.version>4.1.3</bootstrap.version>
         <jquery.version>3.3.1</jquery.version>
+        <fastjson.version>1.2.4</fastjson.version>
+        <java-jwt.version>3.7.0</java-jwt.version>
     </properties>
 
     <!--依赖管理-->
@@ -52,6 +54,17 @@
                 <groupId>org.webjars</groupId>
                 <artifactId>jquery</artifactId>
                 <version>${jquery.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${java-jwt.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
