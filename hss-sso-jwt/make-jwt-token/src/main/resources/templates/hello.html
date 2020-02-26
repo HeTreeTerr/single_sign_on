@@ -65,9 +65,20 @@
             console.log("点击token效验按钮！");
             var token = localStorage.getItem("token");
             console.log("local-token="+token);
-            if(){
-
-            }
+            $.ajax({
+                url: projectName+"/checkJwt",
+                data:"token="+token,
+                type: "GET",
+                dataType: "json",
+                success: function(result) {
+                    console.log("返回结果：code="+result.code+"---data="+result.data);
+                    if(result.code == 1 && result.data === true){
+                        alert("效验通过");
+                    }else{
+                        alert("效验失败");
+                    }
+                }
+            });
         });
 
     });

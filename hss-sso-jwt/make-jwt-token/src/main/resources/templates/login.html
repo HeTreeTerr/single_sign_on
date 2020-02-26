@@ -35,6 +35,7 @@
 <script type="text/javascript" th:src="@{/asserts/js/ajaxhook.min.js}"></script>
 
 <script type="text/javascript" th:src="@{/asserts/js/sysInitArg.js}"></script>
+<script type="text/javascript" th:src="@{/asserts/js/jsInterceptor.js}"></script>
 <script type="text/javascript">
     $(function () {
         //alert("成功引入jquery!!!");
@@ -61,7 +62,7 @@
                             console.log("登录成功！");
                             //在LocalStorage中存放token,并跳转
                             localStorage.setItem("token",result.data);
-                            window.location.href = projectName+"/test/helloPage";
+                            //window.location.href = projectName+"/test/helloPage";
                         }else{//登录失败
                             alert("用户名或密码错误！");
                         }
