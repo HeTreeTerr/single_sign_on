@@ -27,6 +27,9 @@ public class JwtController {
 
     @GetMapping("/checkJwt")
     public ReturnEntity checkJwt(String token) {
+        if(token == null||("").equals(token)){
+            return ReturnEntity.successResult(false);
+        }
         return ReturnEntity.successResult(service.checkJwt(token));
     }
 

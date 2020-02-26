@@ -32,9 +32,9 @@
 <!--jquery-->
 <script type="text/javascript" th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
 <script type="text/javascript" th:src="@{/webjars/bootstrap/4.1.3/js/bootstrap.js}"></script>
-
 <script type="text/javascript" th:src="@{/asserts/js/ajaxhook.min.js}"></script>
-<script type="text/javascript" th:src="@{/asserts/js/jsInterceptor.js}"></script>
+
+<script type="text/javascript" th:src="@{/asserts/js/sysInitArg.js}"></script>
 <script type="text/javascript">
     $(function () {
         //alert("成功引入jquery!!!");
@@ -54,9 +54,17 @@
                     data:JSON.stringify({"name":name,"password":password}),
                     contentType:"application/json;charset=utf-8",
                     dataType: "json",
-                    success: function(data) {
-                        console.log("返回结果："+data.code);
-                        var resultCode = data.code;
+                    success: function(result) {
+                        console.log("返回结果："+result.code);
+                        var resultCode = result.code;
+                        if(resultCode == 1){//登录成功
+                            console.log("登录成功！");
+                            //在LocalStorage中存放token,并跳转
+                            localStorage.setItem("token",result.data);
+                            window.location.href = projectName+"/test/helloPage";
+                        }else{//登录失败
+                            alert("用户名或密码错误！");
+                        }
                     }
                 });
             }

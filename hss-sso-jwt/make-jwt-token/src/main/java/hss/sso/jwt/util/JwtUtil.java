@@ -29,6 +29,7 @@ public class JwtUtil {
                 .withExpiresAt(new Date(System.currentTimeMillis() + timeOut))
                 //设置负载
                 .withClaim("name", name)
+                .withClaim("id","I am userId")
                 .sign(algorithm);
         return token;
     }
