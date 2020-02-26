@@ -10,8 +10,9 @@ public class DefaultView extends WebMvcConfigurerAdapter {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        //"/"这里是访问路径，"login"是页面名称
+
         registry.addViewController("/").setViewName("hello");
+        registry.addViewController("/loginPage").setViewName("login");
         //设置优先级
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
         super.addViewControllers(registry);

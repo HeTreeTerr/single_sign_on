@@ -1,3 +1,8 @@
+//js获取项目的路径
+var pathName=window.document.location.pathname;
+//截取项目的名称
+var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+
 //js的拦截器，针对引入改文件的所有页面
 hookAjax({
     //拦截回调
