@@ -40,7 +40,6 @@ hookAjax({
                     dataType: "json",
                     success: function(result) {
                         console.log("返回结果：code="+result.code+"---data="+result.data);
-                        debugger;
                         if(result.code == 1){
                             //效验并刷新token成功
                             if(token != result.data){
@@ -48,6 +47,8 @@ hookAjax({
                                 localStorage.setItem("token",result.data);
                                 //删除远程redis-token
                                 clearRedisToken(token);
+                            }else{
+                                console.log("token时效大于半小时，无需刷新！");
                             }
                         }else{
                             alert("刷新token失败");
