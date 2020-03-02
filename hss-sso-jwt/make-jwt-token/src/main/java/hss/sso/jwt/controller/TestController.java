@@ -1,5 +1,6 @@
 package hss.sso.jwt.controller;
 
+import hss.sso.jwt.entity.ReturnEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,19 +23,19 @@ public class TestController {
 
     @PostMapping(value = "/add")
     @ResponseBody
-    public Map<String,Object> add(){
+    public ReturnEntity add(){
 
         Map<String,Object> map = new LinkedHashMap<String, Object>();
         map.put("type","add");
-        return map;
+        return ReturnEntity.successResult(map);
     }
 
     @GetMapping(value = "/find")
     @ResponseBody
-    public Map<String,Object> find(){
+    public ReturnEntity find(){
 
         Map<String,Object> map = new LinkedHashMap<String, Object>();
         map.put("type","find");
-        return map;
+        return ReturnEntity.successResult(map);
     }
 }

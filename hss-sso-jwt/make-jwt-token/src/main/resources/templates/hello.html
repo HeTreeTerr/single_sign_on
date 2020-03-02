@@ -38,26 +38,34 @@
 
         $("#add").click(function () {
             console.log("点击添加按钮");
+            var token = localStorage.getItem("token");
+            console.log("local-token="+token);
             $.ajax({
                 url: projectName+"/test/add",
-                data:"user=1",
+                data:"user=1&token="+token,
                 type: "POST",
                 dataType: "json",
-                success: function(data) {
-                    console.log("返回结果："+data.type);
+                success: function(result) {
+                    if(result.code == 1){
+                        console.log("返回结果："+result.data.type);
+                    }
                 }
             });
         });
 
         $("#find").click(function () {
             console.log("点击查询按钮");
+            console.log("点击添加按钮");
+            var token = localStorage.getItem("token");
             $.ajax({
                 url: projectName+"/test/find",
-                data:"user=1",
+                data:"user=1&token="+token,
                 type: "GET",
                 dataType: "json",
-                success: function(data) {
-                    console.log("返回结果："+data.type);
+                success: function(result) {
+                    if(result.code == 1){
+                        console.log("返回结果："+result.data.type);
+                    }
                 }
             });
         });

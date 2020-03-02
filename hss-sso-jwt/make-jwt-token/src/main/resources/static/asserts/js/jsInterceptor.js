@@ -5,7 +5,16 @@ hookAjax({
         console.log("onreadystatechange called: %O",xhr);
     },
     onload:function(xhr){
-        console.log("onload called: %O",xhr)
+        console.log("onload called: %O",xhr);
+        var url = xhr.responseURL;
+        //响应成功后调用
+        //将登录和退出放入白名单中,拦截其他方法
+        var loginPath = new RegExp(projectName+"/login");
+        var inValidPath = new RegExp(projectName+"/inValid");
+        var refreshJwtPath = new RegExp(projectName+"/refreshJwt");
+        if(!(loginPath.test(url)) && !(inValidPath.test(url)) && !(refreshJwtPath.test(url))) {
+            console.log("方法调用成功后--》执行");
+        }
     },
     //拦截函数
     open:function(arg){
