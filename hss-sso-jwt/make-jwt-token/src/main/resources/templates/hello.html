@@ -29,6 +29,7 @@
 <script type="text/javascript" th:src="@{/asserts/js/ajaxhook.min.js}"></script>
 
 <script type="text/javascript" th:src="@{/asserts/js/sysInitArg.js}"></script>
+<script type="text/javascript" th:src="@{/asserts/js/localStorageExp.js}"></script>
 <script type="text/javascript" th:src="@{/asserts/js/jsInterceptor.js}"></script>
 <script type="text/javascript">
 
@@ -38,7 +39,8 @@
 
         $("#add").click(function () {
             console.log("点击添加按钮");
-            var token = localStorage.getItem("token");
+            //var token = localStorage.getItem("token");
+            var token = getLocalStorage("token",tokenExpTime);
             console.log("local-token="+token);
             $.ajax({
                 url: projectName+"/test/add",
@@ -55,8 +57,8 @@
 
         $("#find").click(function () {
             console.log("点击查询按钮");
-            console.log("点击添加按钮");
-            var token = localStorage.getItem("token");
+            //var token = localStorage.getItem("token");
+            var token = getLocalStorage("token",tokenExpTime);
             $.ajax({
                 url: projectName+"/test/find",
                 data:"user=1&token="+token,
@@ -72,7 +74,8 @@
 
         $("#checkToken").click(function () {
             console.log("点击token效验按钮！");
-            var token = localStorage.getItem("token");
+            //var token = localStorage.getItem("token");
+            var token = getLocalStorage("token",tokenExpTime);
             console.log("local-token="+token);
             $.ajax({
                 url: projectName+"/checkJwt",
@@ -93,7 +96,8 @@
         $("#clearToken").click(function () {
             console.log("点击登出按钮");
             //1.删除redis中的token，使令牌失效
-            var token = localStorage.getItem("token");
+            //var token = localStorage.getItem("token");
+            var token = getLocalStorage("token",tokenExpTime);
             console.log("local-token="+token);
             $.ajax({
                 url: projectName+"/inValid",

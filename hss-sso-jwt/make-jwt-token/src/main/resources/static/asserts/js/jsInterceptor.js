@@ -48,7 +48,8 @@ hookAjax({
         if(!(loginPath.test(url)) && !(inValidPath.test(url)) && !(refreshJwtPath.test(url))) {
             console.log("js拦截器最终效果----》刷新token");
             //1.获取token
-            var token = localStorage.getItem("token");
+            //var token = localStorage.getItem("token");
+            var token = getLocalStorage("token",tokenExpTime);
             //2.判断本地浏览器有没有token,有则进行token刷新
             if(token != null && token != "" && token != undefined){
                 console.log("当前浏览器存在token");
