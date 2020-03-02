@@ -81,8 +81,8 @@
                 dataType: "json",
                 success: function(result) {
                     console.log("返回结果：code="+result.code+"---data="+result.data);
-                    if(result.code == 1 && result.data === true){
-                        alert("效验通过");
+                    if(result.code == 1 && result.data.flag === true){
+                        alert("效验通过,userid="+result.data.userInfo.id+"<--->userName="+result.data.userInfo.name);
                     }else{
                         alert("效验失败");
                     }

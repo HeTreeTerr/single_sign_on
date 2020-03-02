@@ -67,7 +67,8 @@ public class LoginFilter implements Filter {
         if (this.check(token)) {
             //token和用户id保存到userContextholder
             String str = new String(Base64Utils.decodeFromString(token.split("\\.")[1]));
-            UserContext context = new UserContext(JSON.parseObject(str).getString("name"), token);
+            UserContext context = new UserContext(JSON.parseObject(str).getString("id"),
+                    JSON.parseObject(str).getString("name"), token);
             UserContextHolder.set(context);
             filterChain.doFilter(servletRequest, servletResponse);
         } else {

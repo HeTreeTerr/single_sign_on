@@ -10,13 +10,15 @@ package hss.sso.jwt.entity;
 public class UserContext {
 
     private String id;
+    private String name;
     private String token;
 
     public UserContext() {
     }
 
-    public UserContext(String id, String token) {
+    public UserContext(String id,String name, String token) {
         this.id = id;
+        this.name = name;
         this.token = token;
     }
 
@@ -34,5 +36,13 @@ public class UserContext {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
