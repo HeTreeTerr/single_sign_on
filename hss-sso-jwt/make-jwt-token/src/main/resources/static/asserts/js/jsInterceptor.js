@@ -14,6 +14,16 @@ hookAjax({
         var refreshJwtPath = new RegExp(projectName+"/refreshJwt");
         if(!(loginPath.test(url)) && !(inValidPath.test(url)) && !(refreshJwtPath.test(url))) {
             console.log("方法调用成功后--》执行");
+            //获取响应结果
+            var result = JSON.parse(xhr.response);
+            var code = result["code"];
+            console.log("响应返回码--->"+code);
+            if(code == -1){
+                //未登录，1.删除本地所有的localStorage
+                localStorage.clear();
+                //2.跳至登录页
+                window.location.href = projectName+"/loginPage";
+            }
         }
     },
     //拦截函数
