@@ -78,8 +78,8 @@ public class JwtService {
      */
     private String generateNewJwt(String name) {
         String secret = UUID.randomUUID().toString().replaceAll("-", "");
-        String token = JwtUtil.encode(name, secret, expireTime);
-        RedisUtil.set(token, secret, expireTime);
+        String token = JwtUtil.encode(name, secret, expireTime/30);
+        RedisUtil.set(token, secret, expireTime/30);
         return token;
     }
 

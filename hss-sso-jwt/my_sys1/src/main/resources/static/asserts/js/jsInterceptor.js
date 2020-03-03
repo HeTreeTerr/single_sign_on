@@ -48,23 +48,23 @@ hookAjax({
         if(!(loginPath.test(url)) && !(inValidPath.test(url)) && !(refreshJwtPath.test(url))) {
             console.log("js拦截器最终效果----》刷新token");
             //1.获取token
-            //var token = localStorage.getItem("token");
             var token = getLocalStorage("token",tokenExpTime);
             //2.判断本地浏览器有没有token,有则进行token刷新
             if(token != null && token != "" && token != undefined){
                 console.log("当前浏览器存在token");
                 $.ajax({
                     url: projectName+"/refreshJwt",
-                    data:"token="+token,
+                    //data:"token="+token,
                     type: "GET",
                     dataType: "json",
+                    beforeSend: setHeader,
                     success: function(result) {
                         console.log("返回结果：code="+result.code+"---data="+result.data);
                         if(result.code == 1){
                             //效验并刷新token成功
                             if(token != result.data){
                                 //替换本地token
-                                localStorage.setItem("token",result.data);
+                                setLocalStorage("token",result.data);
                                 //删除远程redis-token
                                 clearRedisToken(token);
                             }else{
@@ -99,4 +99,10 @@ function clearRedisToken(token) {
             }
         }
     });
+}
+
+//将token放入请求头中
+function setHeader(xhr){ // XmlHttpRequest
+    var token = getLocalStorage("token",tokenExpTime);
+    xhr.setRequestHeader("Authorization",token);
 }
