@@ -8,6 +8,9 @@ function setLocalStorage(key,value){
 //获取
 function getLocalStorage(key,exp){
     var data = localStorage.getItem(key);
+    if(data == null || data == "" || data == undefined){
+        return null;
+    }
     var dataObj = JSON.parse(data);
     if (new Date().getTime() - dataObj.time>exp) {
         console.log('信息已过期');
