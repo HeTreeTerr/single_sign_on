@@ -63,7 +63,8 @@ public class LoginFilter implements Filter {
             filterChain.doFilter(servletRequest, servletResponse);
             return;
         }
-        String token = httpServletRequest.getParameter("token");
+        //String token = httpServletRequest.getParameter("token");
+        String token = httpServletRequest.getHeader("Authorization");
         if (this.check(token)) {
             //token和用户id保存到userContextholder
             String str = new String(Base64Utils.decodeFromString(token.split("\\.")[1]));

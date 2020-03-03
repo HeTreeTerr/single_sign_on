@@ -40,14 +40,12 @@
 
         $("#add").click(function () {
             console.log("点击添加按钮");
-            //var token = localStorage.getItem("token");
-            var token = getLocalStorage("token",tokenExpTime);
-            console.log("local-token="+token);
             $.ajax({
                 url: projectName+"/test/add",
-                data:"user=1&token="+token,
+                //data:"user=1&token="+token,
                 type: "POST",
                 dataType: "json",
+                beforeSend: setHeader,
                 success: function(result) {
                     if(result.code == 1){
                         console.log("返回结果："+result.data.type);
@@ -58,13 +56,12 @@
 
         $("#find").click(function () {
             console.log("点击查询按钮");
-            //var token = localStorage.getItem("token");
-            var token = getLocalStorage("token",tokenExpTime);
             $.ajax({
                 url: projectName+"/test/find",
-                data:"user=1&token="+token,
+                data:"user=1",
                 type: "GET",
                 dataType: "json",
+                beforeSend: setHeader,
                 success: function(result) {
                     if(result.code == 1){
                         console.log("返回结果："+result.data.type);
@@ -75,14 +72,12 @@
 
         $("#checkToken").click(function () {
             console.log("点击token效验按钮！");
-            //var token = localStorage.getItem("token");
-            var token = getLocalStorage("token",tokenExpTime);
-            console.log("local-token="+token);
             $.ajax({
                 url: projectName+"/checkJwt",
-                data:"token="+token,
+                //data:"token="+token,
                 type: "GET",
                 dataType: "json",
+                beforeSend: setHeader,
                 success: function(result) {
                     console.log("返回结果：code="+result.code+"---data="+result.data);
                     if(result.code == 1 && result.data.flag === true){
@@ -103,12 +98,12 @@
             //1.删除redis中的token，使令牌失效
             //var token = localStorage.getItem("token");
             var token = getLocalStorage("token",tokenExpTime);
-            console.log("local-token="+token);
             $.ajax({
                 url: projectName+"/inValid",
                 data:"token="+token,
                 type: "GET",
                 dataType: "json",
+                beforeSend: setHeader,
                 success: function(result) {
                     console.log("返回结果：code="+result.code+"---data="+result.data);
                     if(result.code == 1){

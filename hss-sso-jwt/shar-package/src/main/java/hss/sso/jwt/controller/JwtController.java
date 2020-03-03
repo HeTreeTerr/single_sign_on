@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -31,7 +32,8 @@ public class JwtController {
     }
 
     @GetMapping("/checkJwt")
-    public ReturnEntity checkJwt(String token) {
+    public ReturnEntity checkJwt(HttpServletRequest request) {
+        String token = request.getHeader("Authorization");
         if(token == null||("").equals(token)){
             return ReturnEntity.successResult(false);
         }
@@ -49,7 +51,8 @@ public class JwtController {
     }
 
     @GetMapping("/refreshJwt")
-    public ReturnEntity refreshJwt(String token){
+    public ReturnEntity refreshJwt(HttpServletRequest request){
+        String token = request.getHeader("Authorization");
         return ReturnEntity.successResult(service.refreshJwt(token));
     }
 
