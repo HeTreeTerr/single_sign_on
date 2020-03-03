@@ -58,7 +58,7 @@ public class LoginFilter implements Filter {
         if (requestUrl.endsWith(".css") || requestUrl.endsWith(".js") ||  requestUrl.endsWith(".png")
                 || requestUrl.endsWith(".jpg")
                 || "/loginPage".equals(requestUrl) || "/login".equals(requestUrl) || "/".equals(requestUrl)
-                || "/test/helloPage".equals(requestUrl) || "/inValid".equals(requestUrl)) {
+                || "/test/helloPage".equals(requestUrl) || "/inValid".equals(requestUrl) || "/indexPage".equals(requestUrl)) {
             UserContextHolder.remove();
             filterChain.doFilter(servletRequest, servletResponse);
             return;
