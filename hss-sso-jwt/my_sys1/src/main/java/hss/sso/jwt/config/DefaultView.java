@@ -11,8 +11,8 @@ public class DefaultView extends WebMvcConfigurerAdapter {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
 
-        registry.addViewController("/").setViewName("login");
-        registry.addViewController("/loginPage").setViewName("login");
+        registry.addViewController("/").setViewName("index");
+        registry.addViewController("/indexPage").setViewName("index");
         //设置优先级
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
         super.addViewControllers(registry);

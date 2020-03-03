@@ -18,6 +18,7 @@
     <modules>
         <module>make-jwt-token</module>
         <module>shar-package</module>
+        <module>my_sys1</module>
     </modules>
 
     <parent>
