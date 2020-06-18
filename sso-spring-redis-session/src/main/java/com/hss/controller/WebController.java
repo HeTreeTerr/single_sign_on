@@ -1,7 +1,9 @@
 package com.hss.controller;
 
+import com.hss.bean.User;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,17 +11,25 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/service")
 public class WebController {
 
-    @RequestMapping("setMsg")
+    @RequestMapping("/login")
     public String  getMsg(HttpSession session) {
-
-        session.setAttribute("msg", "Hello SpringSession!");
+        User user = new User(1L,"张三");
+        session.setAttribute("userSession", user);
         return "ok";
     }
 
-    @RequestMapping("getMsg")
-    public String  setMsg(HttpSession session) {
+    @RequestMapping("/getUserInfo")
+    public Object  setMsg(HttpSession session) {
 
-        String msg=(String) session.getAttribute("msg");
-        return msg;
+        User userInfo=(User) session.getAttribute("userSession");
+        return userInfo;
+    }
+
+    @RequestMapping("/logout")
+    public String invalidate(HttpSession session, SessionStatus sessionStatus){
+
+        session.invalidate();
+        sessionStatus.setComplete();
+        return "ok";
     }
 }
