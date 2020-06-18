@@ -2,6 +2,7 @@ package com.hss.interceptor;
 
 import com.alibaba.fastjson.JSON;
 import com.hss.bean.User;
+import com.hss.util.Msg;
 import com.hss.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -28,7 +29,7 @@ public class RedisSessionInterceptor implements HandlerInterceptor {
             try
             {
                 //验证当前请求的session是否是已登录的session
-                String loginSessionId = RedisUtil.get("loginUser:" + userSignInfo.getId());
+                String loginSessionId = RedisUtil.get("spring:session:loginUser:" + userSignInfo.getId());
                 if (loginSessionId != null && loginSessionId.equals(session.getId())){
                     return true;
                 }
@@ -47,7 +48,7 @@ public class RedisSessionInterceptor implements HandlerInterceptor {
         response.setContentType("application/json; charset=utf-8");
 
         try{
-            response.getWriter().print(JSON.toJSONString("用户未登录！"));
+            response.getWriter().print(JSON.toJSONString(Msg.notLogin()));
         }catch (IOException e){
             e.printStackTrace();
         }

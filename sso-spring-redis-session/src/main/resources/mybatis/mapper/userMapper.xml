@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hss.mapper.UserMapper">
+
+    <resultMap id="userResult" type="com.hss.bean.User">
+        <id column="id" property="id" />
+        <result column="userName" property="userName" />
+        <result column="name" property="name" />
+        <result column="passWord" property="passWord" />
+        <result column="mobileNumber" property="mobileNumber" />
+        <result column="brithday" property="brithday" />
+        <result column="sex" property="sex" />
+        <result column="headImgUrl" property="headImgUrl" />
+        <result column="createUser" property="createUser" />
+        <result column="createDate" property="createDate" />
+        <result column="updateUser" property="updateUser" />
+        <result column="updateDate" property="updateDate" />
+    </resultMap>
+
+    <sql id="columns">
+        ID,USERNAME,NAME,PASSWORD,MOBILENUMBER,BRITHDAY,SEX,HEADIMGURL,CREATEUSER,CREATEDATE,UPDATEUSER,UPDATEDATE
+    </sql>
+
+    <select id="findUserList" resultMap="userResult">
+        select <include refid="columns"/> from users
+    </select>
+</mapper>

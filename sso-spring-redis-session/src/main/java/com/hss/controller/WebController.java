@@ -1,41 +1,59 @@
 package com.hss.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.hss.bean.User;
+import com.hss.service.UserService;
+import com.hss.util.Msg;
 import com.hss.util.RedisUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.support.SessionStatus;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/service")
 public class WebController {
 
+    Logger logger = LoggerFactory.getLogger(getClass());
+
+    @Autowired
+    private UserService userService;
+
     @RequestMapping("/login")
-    public String  login(HttpSession session) {
-        User user = new User(1L,"张三");
+    public Msg login(HttpSession session) {
+        User user = new User();
+        user.setId(1L);
+        user.setUserName("张三");
         // 登录成功,保存当前用户登录的sessionId
         String sessionID = session.getId();
         System.out.println("sessionID------------->"+sessionID);
         session.setAttribute("userSession",user);
-        RedisUtil.set("loginUser:" + user.getId(), session.getId(), 60*60*1000);
-        return "ok";
+        RedisUtil.set("spring:session:loginUser:" + user.getId(), session.getId(), 60*60*1000);
+        return Msg.success().add("flag","true");
     }
 
     @RequestMapping("/getUserInfo")
-    public Object getUserInfo(HttpSession session) {
+    public Msg getUserInfo(HttpSession session) {
 
         User userInfo=(User) session.getAttribute("userSession");
-        return userInfo;
+        logger.info(userInfo.getUserName());
+        return Msg.success().add("userInfo",userInfo);
     }
 
     @RequestMapping("/logout")
-    public String logout(HttpSession session, SessionStatus sessionStatus){
+    public Msg logout(HttpSession session, SessionStatus sessionStatus){
         session.invalidate();
         sessionStatus.setComplete();
-        return "ok";
+        return Msg.success().add("flag","true");
+    }
+
+    @RequestMapping("/finUserListPage")
+    public Msg finUserListPage(){
+        PageInfo<User> pageInfo = userService.finUserListPage(1,20);
+        return Msg.success().add("pageInfo",pageInfo);
     }
 }

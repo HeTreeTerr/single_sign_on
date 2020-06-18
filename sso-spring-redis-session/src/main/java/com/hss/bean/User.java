@@ -1,30 +1,25 @@
 package com.hss.bean;
 
-import java.io.Serializable;
+import java.util.Date;
 
-public class User implements Serializable {
-
-    private Long id;
-
+/**
+ * 用户信息
+ */
+public class User extends BaseDomain {
+    /** 用户名 */
     private String userName;
-
+    /** 用户姓名 */
+    private String name;
+    /** 密码 */
     private String passWord;
-
-    public User() {
-    }
-
-    public User(Long id,String userName) {
-        this.id = id;
-        this.userName = userName;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    /** 手机号 */
+    private String mobileNumber;
+    /** 出生日期 */
+    private Date brithday;
+    /** 性别 */
+    private String sex;
+    /** 头像 */
+    private String headImgUrl;
 
     public String getUserName() {
         return userName;
@@ -32,6 +27,14 @@ public class User implements Serializable {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassWord() {
@@ -42,4 +45,35 @@ public class User implements Serializable {
         this.passWord = passWord;
     }
 
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
+    public Date getBrithday() {
+        return brithday;
+    }
+
+    public void setBrithday(Date brithday) {
+        this.brithday = brithday;
+    }
+
+    public String getHeadImgUrl() {
+        return headImgUrl;
+    }
+
+    public void setHeadImgUrl(String headImgUrl) {
+        this.headImgUrl = headImgUrl;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 }
