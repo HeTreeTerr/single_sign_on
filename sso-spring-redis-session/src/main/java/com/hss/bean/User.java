@@ -20,6 +20,8 @@ public class User extends BaseDomain {
     private String sex;
     /** 头像 */
     private String headImgUrl;
+    /** 是否管理员 **/
+    private Boolean tfAdmin;
 
     public String getUserName() {
         return userName;
@@ -75,5 +77,13 @@ public class User extends BaseDomain {
 
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    public Boolean getTfAdmin() {
+        return tfAdmin;
+    }
+
+    public void setTfAdmin(Boolean tfAdmin) {
+        this.tfAdmin = tfAdmin;
     }
 }

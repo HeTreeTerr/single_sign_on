@@ -9,5 +9,9 @@ import java.util.List;
 @Repository
 public interface UserMapper {
 
+    /**
+     * 统计用户列表
+     * @return
+     */
     List<User> findUserList();
 }

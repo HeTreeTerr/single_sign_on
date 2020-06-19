@@ -12,6 +12,7 @@
         <result column="brithday" property="brithday" />
         <result column="sex" property="sex" />
         <result column="headImgUrl" property="headImgUrl" />
+        <result column="tfAdmin" property="tfAdmin" />
         <result column="createUser" property="createUser" />
         <result column="createDate" property="createDate" />
         <result column="updateUser" property="updateUser" />
@@ -19,7 +20,7 @@
     </resultMap>
 
     <sql id="columns">
-        ID,USERNAME,NAME,PASSWORD,MOBILENUMBER,BRITHDAY,SEX,HEADIMGURL,CREATEUSER,CREATEDATE,UPDATEUSER,UPDATEDATE
+        ID,USERNAME,`NAME`,PASSWORD,MOBILENUMBER,BRITHDAY,SEX,HEADIMGURL,TFADMIN,CREATEUSER,CREATEDATE,UPDATEUSER,UPDATEDATE
     </sql>
 
     <select id="findUserList" resultMap="userResult">

@@ -15,13 +15,10 @@ import org.springframework.web.bind.support.SessionStatus;
 import javax.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping("/service")
-public class WebController {
+@RequestMapping("/sign")
+public class SignController {
 
     Logger logger = LoggerFactory.getLogger(getClass());
-
-    @Autowired
-    private UserService userService;
 
     @RequestMapping("/login")
     public Msg login(HttpSession session) {
@@ -36,7 +33,7 @@ public class WebController {
         return Msg.success().add("flag","true");
     }
 
-    @RequestMapping("/getUserInfo")
+    @RequestMapping("/getUserSignInfo")
     public Msg getUserInfo(HttpSession session) {
 
         User userInfo=(User) session.getAttribute("userSession");
@@ -51,9 +48,4 @@ public class WebController {
         return Msg.success().add("flag","true");
     }
 
-    @RequestMapping("/finUserListPage")
-    public Msg finUserListPage(){
-        PageInfo<User> pageInfo = userService.finUserListPage(1,20);
-        return Msg.success().add("pageInfo",pageInfo);
-    }
 }
