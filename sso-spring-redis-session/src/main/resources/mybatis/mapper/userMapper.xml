@@ -26,4 +26,18 @@
     <select id="findUserList" resultMap="userResult">
         select <include refid="columns"/> from users
     </select>
+
+    <insert id="registeredUser" parameterType="com.hss.bean.User" keyProperty="id" useGeneratedKeys="true" keyColumn="id">
+        insert into users(USERNAME,`NAME`,PASSWORD,MOBILENUMBER,BRITHDAY,SEX,HEADIMGURL,TFADMIN,CREATEUSER,UPDATEUSER)
+        values(#{userName},#{name},#{passWord},#{mobileNumber},#{brithday},#{sex},#{headImgUrl},#{tfAdmin},#{createUser},#{updateUser})
+    </insert>
+
+    <update id="updateUserInfo" parameterType="com.hss.bean.User">
+        update users set
+        <if test="sex!=null and sex!=''">
+            SEX=#{sex},
+        </if>
+        id=#{id}
+        where id=#{id}
+    </update>
 </mapper>

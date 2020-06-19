@@ -1,6 +1,7 @@
-package com.hss.mapper;
+package com.hss.service.impl;
 
 import com.hss.bean.User;
+import com.hss.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -10,23 +11,23 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
-import java.util.List;
+
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserMapperTest {
+public class UserServiceImplTest {
 
     Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    private UserMapper userMapper;
+    private UserService userService;
 
     @Test
-    public void findUserList() {
-        List<User> userList = userMapper.findUserList();
-        for(User user : userList){
-            System.out.println(user.getName());
-        }
+    public void bulkUpdateUserSex() {
+        logger.info("测试事务----------------start");
+        userService.bulkUpdateUserSex();
+        logger.info("测试事务----------------end");
     }
 
     @Test
@@ -42,15 +43,6 @@ public class UserMapperTest {
         user.setTfAdmin(false);
         user.setCreateUser("to_dou");
         user.setUpdateUser("to_dou");
-        userMapper.registeredUser(user);
-        logger.info("registeredUser id------------>"+user.getId());
-    }
-
-    @Test
-    public void updateUserInfo(){
-        User user = new User();
-        user.setId(5L);
-        user.setSex(1);
-        userMapper.updateUserInfo(user);
+        userService.registeredUser(user);
     }
 }

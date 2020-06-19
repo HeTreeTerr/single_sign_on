@@ -17,7 +17,7 @@ public class User extends BaseDomain {
     /** 出生日期 */
     private Date brithday;
     /** 性别 */
-    private String sex;
+    private Integer sex;
     /** 头像 */
     private String headImgUrl;
     /** 是否管理员 **/
@@ -71,11 +71,11 @@ public class User extends BaseDomain {
         this.headImgUrl = headImgUrl;
     }
 
-    public String getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 

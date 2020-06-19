@@ -14,4 +14,14 @@ public interface UserMapper {
      * @return
      */
     List<User> findUserList();
+
+    /**
+     * 添加用户
+     */
+    void registeredUser(User user);
+
+    /**
+     * 修改用户信息
+     */
+    void updateUserInfo(User user);
 }

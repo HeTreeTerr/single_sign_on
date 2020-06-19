@@ -20,7 +20,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         //必须写成getSessionInterceptor()，否则SessionInterceptor中的@Autowired会无效
         registry.addInterceptor(getSessionInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/service/login");
+                .excludePathPatterns("/sign/login");
         super.addInterceptors(registry);
     }
 }

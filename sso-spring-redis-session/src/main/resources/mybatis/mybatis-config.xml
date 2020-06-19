@@ -5,12 +5,14 @@
  <configuration>
     <!-- 驼峰标识 -->
     <settings>
-      <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!-- 对于批量更新操作缓存SQL以提高性能 -->
+        <setting name="defaultExecutorType" value="SIMPLE" />
     </settings>
    <!---->
-    <!--<typeAliases>-->
-       <!--<package name="cn.itcast.bean"/>-->
-    <!--</typeAliases>-->
+    <!--<typeAliases>
+       <package name="com.hss.bean"/>
+    </typeAliases>-->
     <!-- 支持分页技术 -->
     <plugins>
 
