@@ -81,19 +81,16 @@ public class WebLogAspect {
     }
 
     @Around(value = "webLog()")
-    public Object doAroundAdvice(ProceedingJoinPoint proceedingJoinPoint){
+    public Object doAroundAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
         logger.info(">>>>>>>>>>Around");
         logger.info("环绕通知的目标方法名："+proceedingJoinPoint.getSignature().getName());
-        try {
-            long startTime = System.currentTimeMillis();
-            Object obj = proceedingJoinPoint.proceed();
-            Long takeTime = System.currentTimeMillis() - startTime;
-            logger.info("耗时：" + takeTime);
-            return obj;
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
-        return null;
+
+        long startTime = System.currentTimeMillis();
+        Object obj = proceedingJoinPoint.proceed();
+        Long takeTime = System.currentTimeMillis() - startTime;
+        logger.info("耗时：" + takeTime);
+        return obj;
+
     }
 
 }

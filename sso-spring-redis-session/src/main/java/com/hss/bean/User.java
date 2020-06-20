@@ -1,11 +1,18 @@
 package com.hss.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
  * 用户信息
  */
 public class User extends BaseDomain {
+
+    public User() {
+    }
+
     /** 用户名 */
     private String userName;
     /** 用户姓名 */
@@ -15,6 +22,7 @@ public class User extends BaseDomain {
     /** 手机号 */
     private String mobileNumber;
     /** 出生日期 */
+    @DateTimeFormat(pattern = "yyyy-MM-dd" )
     private Date brithday;
     /** 性别 */
     private Integer sex;

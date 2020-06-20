@@ -3,6 +3,8 @@ package com.hss.service;
 import com.github.pagehelper.PageInfo;
 import com.hss.bean.User;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public interface UserService {
@@ -22,5 +24,5 @@ public interface UserService {
      * @param user
      * @return
      */
-    Long registeredUser(User user);
+    Long registeredUser(User user) throws UnsupportedEncodingException, NoSuchAlgorithmException;
 }

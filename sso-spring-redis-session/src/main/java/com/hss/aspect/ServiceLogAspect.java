@@ -61,19 +61,16 @@ public class ServiceLogAspect {
          */
         Object[] method_args = joinPoint.getArgs();
 
-        try {
-            /**
-             * 获取方法参数名称
-             */
-            String[] paramNames = getFieldsName(class_name, method_name);
+        /**
+         * 获取方法参数名称
+         */
+        String[] paramNames = getFieldsName(class_name, method_name);
 
-            /**
-             * 打印方法的参数名和参数值
-             */
-            logParam(paramNames,method_args);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        /**
+         * 打印方法的参数名和参数值
+         */
+        logParam(paramNames,method_args);
+
     }
 
     @AfterReturning(returning = "obj",pointcut = "serviceLog()")
@@ -96,19 +93,16 @@ public class ServiceLogAspect {
     }
 
     @Around(value = "serviceLog()")
-    public Object doAroundAdvice(ProceedingJoinPoint proceedingJoinPoint){
+    public Object doAroundAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
         logger.info(">>>>>>>>>>Around");
         logger.info("环绕通知的目标方法名："+proceedingJoinPoint.getSignature().getName());
-        try {
-            long startTime = System.currentTimeMillis();
-            Object obj = proceedingJoinPoint.proceed();
-            Long takeTime = System.currentTimeMillis() - startTime;
-            logger.info("耗时：" + takeTime);
-            return obj;
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
-        return null;
+
+        long startTime = System.currentTimeMillis();
+        Object obj = proceedingJoinPoint.proceed();
+        Long takeTime = System.currentTimeMillis() - startTime;
+        logger.info("耗时：" + takeTime);
+        return obj;
+
     }
 
     /**
