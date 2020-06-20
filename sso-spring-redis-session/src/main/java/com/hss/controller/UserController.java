@@ -8,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -19,9 +21,22 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/finUserListPage")
-    public Msg finUserListPage(){
-        PageInfo<User> pageInfo = userService.finUserListPage(1,20);
+    @RequestMapping(value = "/finUserListPage",method = {RequestMethod.GET,RequestMethod.POST})
+    public Msg finUserListPage(@RequestParam(value = "pageNo") Integer pageNo,@RequestParam(value = "pageSize") Integer pageSize){
+        PageInfo<User> pageInfo = userService.findUserListPage(pageNo,pageSize);
         return Msg.success().add("pageInfo",pageInfo);
+    }
+
+    @RequestMapping(value = "/registeredUser",method = RequestMethod.POST)
+    public Msg registeredUser(User user){
+        try{
+            Long userId = userService.registeredUser(user);
+            return Msg.success().add("userId",userId);
+        }catch (Exception e){
+            String errorMsg = "用户注册失败";
+            e.printStackTrace();
+            logger.info("errorMsg:"+errorMsg);
+            return Msg.fail().add("errorMsg",errorMsg);
+        }
     }
 }

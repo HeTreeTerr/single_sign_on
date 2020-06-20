@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -20,7 +21,7 @@ public class SignController {
 
     Logger logger = LoggerFactory.getLogger(getClass());
 
-    @RequestMapping("/login")
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
     public Msg login(HttpSession session) {
         User user = new User();
         user.setId(1L);
@@ -33,15 +34,14 @@ public class SignController {
         return Msg.success().add("flag","true");
     }
 
-    @RequestMapping("/getUserSignInfo")
+    @RequestMapping(value = "/getUserSignInfo",method = {RequestMethod.POST,RequestMethod.GET})
     public Msg getUserInfo(HttpSession session) {
 
         User userInfo=(User) session.getAttribute("userSession");
-        logger.info(userInfo.getUserName());
         return Msg.success().add("userInfo",userInfo);
     }
 
-    @RequestMapping("/logout")
+    @RequestMapping(value = "/logout",method = {RequestMethod.POST,RequestMethod.GET})
     public Msg logout(HttpSession session, SessionStatus sessionStatus){
         session.invalidate();
         sessionStatus.setComplete();

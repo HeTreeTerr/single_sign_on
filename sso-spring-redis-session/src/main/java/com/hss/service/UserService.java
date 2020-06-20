@@ -7,9 +7,20 @@ import java.util.List;
 
 public interface UserService {
 
-    PageInfo<User> finUserListPage(Integer pageNo, int pageSize);
+    /**
+     * 查询用户列表（分页）
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    PageInfo<User> findUserListPage(Integer pageNo, int pageSize);
 
     void bulkUpdateUserSex();
 
+    /**
+     * 用户注册
+     * @param user
+     * @return
+     */
     Long registeredUser(User user);
 }

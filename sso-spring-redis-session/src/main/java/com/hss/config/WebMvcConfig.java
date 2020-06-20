@@ -1,6 +1,6 @@
 package com.hss.config;
 
-import com.hss.interceptor.RedisSessionInterceptor;
+import com.hss.web.interceptor.RedisSessionInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

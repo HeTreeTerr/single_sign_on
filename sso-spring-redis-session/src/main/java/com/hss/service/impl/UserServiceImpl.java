@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public PageInfo<User> finUserListPage(Integer pageNo, int pageSize) {
+    public PageInfo<User> findUserListPage(Integer pageNo, int pageSize) {
         //Mapper接口方式的调用
         PageHelper.startPage(pageNo,pageSize);
         List<User> userList = userMapper.findUserList();

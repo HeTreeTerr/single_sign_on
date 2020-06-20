@@ -1,11 +1,9 @@
-package com.hss.interceptor;
+package com.hss.web.interceptor;
 
 import com.alibaba.fastjson.JSON;
 import com.hss.bean.User;
 import com.hss.util.Msg;
 import com.hss.util.RedisUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
