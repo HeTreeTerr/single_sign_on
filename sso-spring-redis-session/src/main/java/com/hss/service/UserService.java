@@ -25,4 +25,11 @@ public interface UserService {
      * @return
      */
     Long registeredUser(User user) throws UnsupportedEncodingException, NoSuchAlgorithmException;
+
+    /**
+     * 由用户名查找用户信息
+     * @param userName
+     * @return
+     */
+    User findUserByUserName(String userName);
 }

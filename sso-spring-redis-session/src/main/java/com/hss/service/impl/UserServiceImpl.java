@@ -59,4 +59,10 @@ public class UserServiceImpl implements UserService {
         logger.info("registeredUser id------------>"+user.getId());
         return user.getId();
     }
+
+    @Override
+    public User findUserByUserName(String userName) {
+
+        return userMapper.findUserByUserName(userName);
+    }
 }

@@ -57,4 +57,11 @@ public class UserServiceImplTest {
         //输入值与加密值校验方法：
         logger.info(""+MyMD5Util.validPassword("BaiNaoHui456", encryptedPwd));
     }
+
+    @Test
+    public void findUserByUserName(){
+        String userName = "hesensen";
+        User user = userService.findUserByUserName(userName);
+        logger.info("user:"+user);
+    }
 }

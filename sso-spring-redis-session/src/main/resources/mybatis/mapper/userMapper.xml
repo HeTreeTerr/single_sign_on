@@ -40,4 +40,8 @@
         id=#{id}
         where id=#{id}
     </update>
+
+    <select id="findUserByUserName" resultMap="userResult">
+        select <include refid="columns"/> from users where userName=#{userName}
+    </select>
 </mapper>

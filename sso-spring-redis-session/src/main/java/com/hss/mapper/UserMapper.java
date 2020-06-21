@@ -2,6 +2,7 @@ package com.hss.mapper;
 
 import com.hss.bean.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,4 +25,11 @@ public interface UserMapper {
      * 修改用户信息
      */
     void updateUserInfo(User user);
+
+    /**
+     * 由用户名查找用户信息
+     * @param userName
+     * @return
+     */
+    User findUserByUserName(@Param(value = "userName") String userName);
 }
