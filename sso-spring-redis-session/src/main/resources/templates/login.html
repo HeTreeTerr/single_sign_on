@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--<link rel="icon" href="https://getbootstrap.com/favicon.ico">-->
+
+    <title>Insert title here</title>
+    <link type="text/css" th:href="@{/layui/css/layui.css}" rel="stylesheet"/>
+    <link type="text/css" th:href="@{/asserts/css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="login-main">
+    <header class="layui-elip">登录</header>
+    <form id="loginForm" class="layui-form">
+        <div class="layui-input-inline">
+            <input type="text" name="userName" required lay-verify="required" placeholder="用户名" autocomplete="off"
+                   class="layui-input">
+        </div>
+        <div class="layui-input-inline">
+            <input type="password" name="password" required lay-verify="required" placeholder="密码" autocomplete="off"
+                   class="layui-input">
+        </div>
+        <div class="layui-input-inline login-btn">
+            <button lay-submit lay-filter="login" class="layui-btn">登录</button>
+        </div>
+        <hr/>
+        <p><a href="register.html" class="fl">立即注册</a><a href="javascript:;" class="fr">忘记密码？</a></p>
+    </form>
+</div>
+</body>
+<!--jquery-->
+<script type="text/javascript" th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/asserts/js/ajaxhook.min.js}"></script>
+<script type="text/javascript" th:src="@{/layui/layui.js}"></script>
+<script type="text/javascript">
+    layui.use(['form','layer','jquery'], function () {
+
+        // 操作对象
+        var form = layui.form;
+        var $ = layui.jquery;
+        form.on('submit(login)',function (data) {
+            // console.log(data.field);
+            $.ajax({
+                url: "/sign/login",
+                data: $("#loginForm").serialize(),
+                dataType: "json",
+                async: false,
+                type: "POST",
+                success: function (result) {
+                    if (result.code == 100) {
+                        //跳转到系统主页
+                        layer.msg("登录成功");
+                        window.location.href = "/indexPage";
+                    }else{
+                        console.log(result.extend.errorMsg);
+                        layer.msg(result.extend.errorMsg);
+                    }
+                }
+            });
+            return false;
+        })
+
+    });
+</script>
+</html>

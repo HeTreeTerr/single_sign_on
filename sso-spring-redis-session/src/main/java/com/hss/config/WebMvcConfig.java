@@ -3,7 +3,9 @@ package com.hss.config;
 import com.hss.web.interceptor.RedisSessionInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Configuration
@@ -20,7 +22,20 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         //必须写成getSessionInterceptor()，否则SessionInterceptor中的@Autowired会无效
         registry.addInterceptor(getSessionInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/sign/login");
+                .excludePathPatterns("/sign/login","/","/loginPage"
+                        ,"/**/*.css", "/**/*.js", "/**/*.png", "/**/*.jpg"
+                                ,"/**/*.ico","/**/*.svg");
         super.addInterceptors(registry);
+    }
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+
+        registry.addViewController("/").setViewName("login");
+        registry.addViewController("/loginPage").setViewName("login");
+        registry.addViewController("/indexPage").setViewName("index");
+        //设置优先级
+        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
+        super.addViewControllers(registry);
     }
 }
