@@ -44,4 +44,16 @@
     <select id="findUserByUserName" resultMap="userResult">
         select <include refid="columns"/> from users where userName=#{userName}
     </select>
+
+    <update id="updateUserSex" parameterType="com.hss.bean.User">
+        update users set
+        SEX=#{sex}
+        where id=#{id}
+    </update>
+
+    <update id="updateUserTfAdmin" parameterType="com.hss.bean.User">
+        update users set
+        TFADMIN=#{tfAdmin}
+        where id=#{id}
+    </update>
 </mapper>

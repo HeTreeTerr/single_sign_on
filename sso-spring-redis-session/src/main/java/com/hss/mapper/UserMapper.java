@@ -32,4 +32,16 @@ public interface UserMapper {
      * @return
      */
     User findUserByUserName(@Param(value = "userName") String userName);
+
+    /**
+     * 修改用户性别
+     * @param user
+     */
+    void updateUserSex(User user);
+
+    /**
+     * 修改用户权限
+     * @param user
+     */
+    void updateUserTfAdmin(User user);
 }

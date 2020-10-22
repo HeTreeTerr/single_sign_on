@@ -32,4 +32,10 @@ public interface UserService {
      * @return
      */
     User findUserByUserName(String userName);
+
+    /**
+     * 修改用户权限
+     * @param user
+     */
+    void updateUserTfAdmin(Long userId,Boolean tfAdmin);
 }
