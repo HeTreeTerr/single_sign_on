@@ -24,6 +24,8 @@
 6. 在redis中查看持久化的session信息
 
 ## 1.3 hss-sso-jwt
+>用户登录，成功验证身份后,使用jwt加密工具生成token和secret。token信息返回给用户，
+token和secret作为键值对保存至数据库。用户在请求接口时，携带token来鉴权。
 
 ### 1.3.1 shar-page
 公共包，包含redis的连接工具类，jwt生成钥匙、加密解密工具类，项目信息传输对象。
